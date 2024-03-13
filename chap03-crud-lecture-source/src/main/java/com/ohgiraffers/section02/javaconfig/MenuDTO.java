@@ -1,6 +1,4 @@
-package com.ohgiraffers.section01.xmlconfig;
-
-import lombok.*;
+package com.ohgiraffers.section02.javaconfig;
 
 //@NoArgsConstructor
 //@AllArgsConstructor

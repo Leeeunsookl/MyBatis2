@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.xmlconfig;
+package com.ohgiraffers.section03.remix;
 
 /* 필기.
  *   Controller 의 역할
@@ -7,6 +7,7 @@ package com.ohgiraffers.section01.xmlconfig;
  *   service 쪽으로 전달하기 위한 인스턴스를 담고 서비스의 비즈니스 로직을 담당하는 method 를 호출한다.
  *   또한 호출한 수행 결과를 반환 받아 어떠한 뷰를 다시 사용자에게 보여줄 것인지를 결정하는 역할을 한다.
  *  */
+
 
 import java.util.List;
 import java.util.Map;

@@ -33,51 +33,68 @@ public class MenuService {
         return menuList;
 
     }
-    public MenuDTO selectMenuByCode(int code){
+
+    public MenuDTO selectMenuByCode(int code) {
+
         SqlSession sqlSession = getSqlSession();
+
         MenuDTO menu = menuDAO.selectMenuByCode(sqlSession, code);
 
         sqlSession.close();
+
         return menu;
     }
 
     public boolean registMenu(MenuDTO menu) {
 
         SqlSession sqlSession = getSqlSession();
-        int result= menuDAO.insertMenu(sqlSession,menu);
 
-        //트랜젝션 제어
-        if(result>0){
-            sqlSession.commit();        //성공했으니 저장하겠다!
-        }else{ sqlSession.rollback();       // 틀렸으니 원래대로 돌려놓겠다!
+        int result = menuDAO.insertMenu(sqlSession, menu);
+
+        // 트렌젝션 제어
+        if(result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
         }
+
         sqlSession.close();
 
-        return result>0 ? true : false ;
+        return result > 0 ? true : false;
+
+    }
+
+    public boolean modifyMenu(MenuDTO menu) {
+
+        SqlSession sqlSession = getSqlSession();
+
+        int result = menuDAO.updateMenu(sqlSession, menu);
+
+        if(result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+
+        sqlSession.close();
+
+        return result > 0 ? true : false;
     }
 
     public boolean deleteMenu(int code) {
-            SqlSession sqlSession = getSqlSession();
-            int result = menuDAO.deleteMenu(sqlSession,code);
-            if (result>0){
-                sqlSession.commit();
-            }else {sqlSession.rollback();}
 
-            sqlSession.close();
-            return result>0? true: false ;
-
-    }
-
-    public boolean updateMenu(MenuDTO menu) {
         SqlSession sqlSession = getSqlSession();
-        int result= menuDAO.updateMenu(sqlSession,menu);
 
-        //트랜젝션 제어
-        if(result>0){
-            sqlSession.commit();        //성공했으니 저장하겠다!
-        }else{ sqlSession.rollback();       // 틀렸으니 원래대로 돌려놓겠다!
+        int result = menuDAO.deleteMenu(sqlSession, code);
+
+        if(result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
         }
+
         sqlSession.close();
-        return result>0 ? true : false ;
-    }       //트랜젝션 제어가 끝나고 나면 사용한 자원을 닫아주고,
+
+        return result > 0 ? true : false;
+    }
 }
